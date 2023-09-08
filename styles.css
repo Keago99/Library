@@ -1,3 +1,14 @@
+
+
+
+
 table, th, td{
     border: 1px solid;
+}
+
+
+mainContent{
+    display: flex;
+    align-items: center;
+    justify-content: center;  
 }
