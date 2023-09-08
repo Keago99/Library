@@ -1,7 +1,14 @@
 // I'll be overcommenting everything for learning purposes, apologies if this seems annoying
 
-const signupForm = document.querySelector('[name="signup"]');
+// vairable for the form
+const form = document.getElementById("addBook");
 
+// All the elements from the input fields converted to
+// const to create new objects.
+const author = document.getElementById("bAuthor");
+const title = document.getElementById("bTitle");
+const pages = document.getElementById("pages");
+const read = document.getElementById("read");
 
 // This is where all library files are stored
 const myLibrary = [
@@ -17,6 +24,8 @@ function book(author, title, pages, read){
     this.read = read
 }
 
-function addBookToLibrary(){
+function addBookToLibrary(author, title, pages, read){
+    const newBook = new book(author, title, pages, read)
+    myLibrary.push(newBook);
 
 }
