@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library</title>
-    <script src="scripts.js"></script>
+    <script src="scripts.js" defer></script>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -18,16 +18,14 @@
             </tr>
         </table>
         <div class="inputBookField">
-            <form id="addBook" action="/action_page.php">
+            <form id="addBook" action="/fart.html">
                 <label for="bTitle">Book Title:</label><br>
                 <input type="text" id="bTitle" name="bTitle" value="Book Title"><br>
                 <label for="bAuthor">Book Author:</label><br>
                 <input type="text" id="bAuthor" name="bAuthor" value="Book Author"><br>
                 <label for="pages">Pages:</label><br>
-                <input type="number" id="pages" name="pages" value="Number of Pages"><br>
-                <label for="read">Read:</label>
-                <input type="checkbox" id="read" name="read" value="Have you read this book?"><br><br>
-                <input type="submit" value="Submit">
+                <input type="number" id="pages" name="pages"><br><br>
+                <input type="submit" value="submit">
               </form> 
         </div>
     </div>
