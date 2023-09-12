@@ -5,33 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library</title>
     <script src="scripts.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 </head>
 <body>
     <div class="Header">
         <h1>Library</h1>
     </div>
     <div class="mainContent">
-        <table>
-            <tr>
-                <th>title</th>
-                <th>author</th>
-                <th>pages</th>
-                <th>read</th>
-            </tr>
+        <table class="table table-info">
+            <thead>
+              <tr class="table-primary">
+                <th scope="col">Title</th>
+                <th scope="col">Author</th>
+                <th scope="col">Pages</th>
+                <th scope="col">Read</th>
+              </tr>
+            </thead>
+            <tbody>
 
-        </table>
-        <div class="inputBookField">
-            <form id="addBook" action="/fart.html">
-                <label for="bTitle">Book Title:</label><br>
-                <input type="text" id="bTitle" name="bTitle" value="Book Title"><br>
-                <label for="bAuthor">Book Author:</label><br>
-                <input type="text" id="bAuthor" name="bAuthor" value="Book Author"><br>
-                <label for="pages">Pages:</label><br>
-                <input type="number" id="pages" name="pages"><br><br>
-                <input type="submit" value="submit">
-              </form> 
-        </div>
+            </tbody>
+          </table>
+          <div class="buttonDiv">
+            <button id="addBookButton" type="button" class="btn btn-primary">Add Book</button>
+          </div>
     </div>
     
 </body>

@@ -9,9 +9,6 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 }
 
 
-table, th, td{
-    border: 1px solid;
-}
 
 .Header{
     display: flex;
@@ -23,7 +20,13 @@ table, th, td{
     color: aliceblue;
 }
 
-.mainContent{
-    background-color: #213970;
-    color: aliceblue;
+.buttonDiv{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#addBookButton{
+    height: 50px;
+    width: 300px;
 }
