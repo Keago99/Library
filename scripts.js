@@ -28,7 +28,7 @@ closeButton.addEventListener("click", () => {
 })
 
 form.onsubmit = function(event){
-    console.log("The form submit is WORKING!");
+    addBook();
     event.preventDefault();
 };
 
@@ -41,21 +41,39 @@ function updateTable()
 {
     clearTable();
     myLibrary.forEach((book) => {
+
+        var btn = document.createElement("button");
+            btn.innerText = "Remove";
+            btn.className = "btn btn-danger";
+        
+        var btnRead = document.createElement("button");
+
         let row = document.createElement("tr");
         let td1 = document.createElement("td");
         let td2 = document.createElement("td");
         let td3 = document.createElement("td");
         let td4 = document.createElement("td");
+        let td5 = document.createElement("td");
 
         td1.innerHTML = book.title
         td2.innerHTML = book.author;
         td3.innerHTML = book.pages;
-        td4.innerHTML = book.read;
+        if(book.read == "Yes"){
+            btnRead.innerText = "Read";
+            btnRead.className = "btn btn-success";
+        }
+        else{
+            btnRead.innerText = "Not read"
+            btnRead.className = "btn btn-danger";
+        }
+        td4.appendChild(btnRead);
+        td5.appendChild(btn);
 
         row.appendChild(td1);
         row.appendChild(td2);
         row.appendChild(td3);
         row.appendChild(td4);
+        row.appendChild(td5);
 
         tbody.appendChild(row);
     });
@@ -65,6 +83,12 @@ function addBook(){
     const title = document.getElementById("title").value;
     const author = document.getElementById("author").value;
     const pages = document.getElementById("pages").value;
+    const read = document.getElementById("read").value;
+
+    const newBook = new book(author, title, pages, read, );
+    myLibrary.push(newBook);
+    updateTable();
+    modal.close();
 
     
 }
