@@ -6,6 +6,8 @@ let tbody = document.getElementById("tbody");
 let addButton = document.getElementById("addBookButton");
 const modal = document.getElementById("addBookDialog");
 const form = document.getElementById("bookForm");
+const closeButton = document.getElementById("closeButton");
+
 
 // This is where all library files are stored
 const myLibrary = [
@@ -20,6 +22,10 @@ function book(author, title, pages, read){
     this.pages = pages;
     this.read = read;
 }
+
+closeButton.addEventListener("click", () => {
+    modal.close();
+})
 
 form.onsubmit = function(event){
     console.log("The form submit is WORKING!");
@@ -55,6 +61,13 @@ function updateTable()
     });
 }
 
+function addBook(){
+    const title = document.getElementById("title").value;
+    const author = document.getElementById("author").value;
+    const pages = document.getElementById("pages").value;
+
+    
+}
 
 // This clears the table
 function clearTable(){
