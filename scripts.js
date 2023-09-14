@@ -7,16 +7,15 @@ let addButton = document.getElementById("addBookButton");
 const modal = document.getElementById("addBookDialog");
 const form = document.getElementById("bookForm");
 const closeButton = document.getElementById("closeButton");
+var btnRead;
 
 
 // This is where all library files are stored
 const myLibrary = [
-    { author: "Derrick Landy", title: "Skullduggery Pleasant", pages: 300, read: "Yes"}
 ];
 
 // Constructor for book object
 function book(author, title, pages, read){
-
     this.author = author;
     this.title = title;
     this.pages = pages;
@@ -39,14 +38,18 @@ addButton.addEventListener('click', () =>{
 
 function updateTable()
 {
+    var numID = 0;
     clearTable();
     myLibrary.forEach((book) => {
+        numID++;
+        // console.log to check if the IDs are correct
+        console.log(book);
 
-        var btn = document.createElement("button");
-            btn.innerText = "Remove";
-            btn.className = "btn btn-danger";
+        var btnRemove = document.createElement("button");
+            btnRemove.innerText = "Remove";
+            btnRemove.className = "btn btn-danger removeButton";
         
-        var btnRead = document.createElement("button");
+        btnRead = document.createElement("button");
 
         let row = document.createElement("tr");
         let td1 = document.createElement("td");
@@ -60,14 +63,14 @@ function updateTable()
         td3.innerHTML = book.pages;
         if(book.read == "Yes"){
             btnRead.innerText = "Read";
-            btnRead.className = "btn btn-success";
+            btnRead.className = "btn btn-success readButton";
         }
         else{
             btnRead.innerText = "Not read"
-            btnRead.className = "btn btn-danger";
+            btnRead.className = "btn btn-danger readButton";
         }
         td4.appendChild(btnRead);
-        td5.appendChild(btn);
+        td5.appendChild(btnRemove);
 
         row.appendChild(td1);
         row.appendChild(td2);
@@ -77,6 +80,16 @@ function updateTable()
 
         tbody.appendChild(row);
     });
+    var removeButtons = document.querySelectorAll('.removeButton');
+    var readButtons = document.querySelectorAll('.readButton');
+
+    for (i = 0; i < removeButtons.length; i++){
+        //add remove button eventlisteners here
+    }
+
+    for (j = 0; j < readButtons.length; j++){
+        // add read button eventlisteners here
+    }
 }
 
 function addBook(){
@@ -91,6 +104,16 @@ function addBook(){
     modal.close();
 
     
+}
+
+function changeRead(){
+    if (btnRead.innerText == "Read"){
+        btnRead.innerText = "Not Read";
+        btnRead.className = "btn btn-danger";
+    }else{
+        btnRead.innerText = "Read";
+        btnRead.className = "btn btn-success";
+    }
 }
 
 // This clears the table
