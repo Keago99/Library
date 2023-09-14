@@ -8,6 +8,7 @@ const modal = document.getElementById("addBookDialog");
 const form = document.getElementById("bookForm");
 const closeButton = document.getElementById("closeButton");
 var btnRead;
+var numID;
 
 
 // This is where all library files are stored
@@ -15,7 +16,8 @@ const myLibrary = [
 ];
 
 // Constructor for book object
-function book(author, title, pages, read){
+function book(id, author, title, pages, read){
+    this.id = id;
     this.author = author;
     this.title = title;
     this.pages = pages;
@@ -38,18 +40,21 @@ addButton.addEventListener('click', () =>{
 
 function updateTable()
 {
-    var numID = 0;
+    numID = -1;
     clearTable();
     myLibrary.forEach((book) => {
         numID++;
+        book.id = numID;
         // console.log to check if the IDs are correct
         console.log(book);
 
         var btnRemove = document.createElement("button");
             btnRemove.innerText = "Remove";
             btnRemove.className = "btn btn-danger removeButton";
+            btnRemove.dataset.identity = numID;
         
         btnRead = document.createElement("button");
+        btnRead.dataset.readIdentity = numID;
 
         let row = document.createElement("tr");
         let td1 = document.createElement("td");
@@ -80,25 +85,26 @@ function updateTable()
 
         tbody.appendChild(row);
     });
+
     var removeButtons = document.querySelectorAll('.removeButton');
     var readButtons = document.querySelectorAll('.readButton');
 
     for (i = 0; i < removeButtons.length; i++){
-        //add remove button eventlisteners here
+        removeButtons[i].addEventListener('click', removeBook);
     }
 
     for (j = 0; j < readButtons.length; j++){
-        // add read button eventlisteners here
+        readButtons[j].addEventListener('click', changeRead);
     }
 }
 
 function addBook(){
-    const title = document.getElementById("title").value;
-    const author = document.getElementById("author").value;
-    const pages = document.getElementById("pages").value;
-    const read = document.getElementById("read").value;
+    var title = document.getElementById("title").value;
+    var author = document.getElementById("author").value;
+    var pages = document.getElementById("pages").value;
+    var read = document.getElementById("read").value;
 
-    const newBook = new book(author, title, pages, read, );
+    const newBook = new book(0, author, title, pages, read, );
     myLibrary.push(newBook);
     updateTable();
     modal.close();
@@ -107,13 +113,20 @@ function addBook(){
 }
 
 function changeRead(){
-    if (btnRead.innerText == "Read"){
-        btnRead.innerText = "Not Read";
-        btnRead.className = "btn btn-danger";
-    }else{
-        btnRead.innerText = "Read";
-        btnRead.className = "btn btn-success";
+    var bookID = this.dataset.readIdentity;
+    if (myLibrary[bookID].read == "Yes"){
+        myLibrary[bookID].read = "No";
     }
+    else{
+        myLibrary[bookID].read = "Yes";
+    }
+    updateTable();
+}
+
+function removeBook(){
+    var removeID = this.dataset.identity;
+    myLibrary.splice(removeID, 1);
+    updateTable();
 }
 
 // This clears the table
